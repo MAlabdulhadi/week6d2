@@ -24,6 +24,9 @@ public class TodoService {
 
     public void updateTodo(Integer userId, Todo todo, Integer idTodo) {
         Todo oldTodo = todoRepository.findTodoById(idTodo);
+        if (oldTodo == null) {
+            return;
+        }
         if (oldTodo.getUserId() != userId) {
             return;
         }
@@ -33,6 +36,9 @@ public class TodoService {
 
     public void deleteTodo(Integer userId, Integer idTodo) {
         Todo todo = todoRepository.findTodoById(idTodo);
+        if (todo == null) {
+            return;
+        }
         if (todo.getUserId() != userId) {
             return;
         }
